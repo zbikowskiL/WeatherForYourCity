@@ -1,0 +1,40 @@
+C:\Users\Łukasz\source\Projekty\WeatherForCity\WeatherForCity.Tests\bin\Debug\netcoreapp2.2\NUnit3.TestAdapter.dll
+C:\Users\Łukasz\source\Projekty\WeatherForCity\WeatherForCity.Tests\bin\Debug\netcoreapp2.2\NUnit3.TestAdapter.pdb
+C:\Users\Łukasz\source\Projekty\WeatherForCity\WeatherForCity.Tests\bin\Debug\netcoreapp2.2\nunit.engine.netstandard.dll
+C:\Users\Łukasz\source\Projekty\WeatherForCity\WeatherForCity.Tests\bin\Debug\netcoreapp2.2\WeatherForCity.Tests.deps.json
+C:\Users\Łukasz\source\Projekty\WeatherForCity\WeatherForCity.Tests\bin\Debug\netcoreapp2.2\WeatherForCity.Tests.runtimeconfig.json
+C:\Users\Łukasz\source\Projekty\WeatherForCity\WeatherForCity.Tests\bin\Debug\netcoreapp2.2\WeatherForCity.Tests.runtimeconfig.dev.json
+C:\Users\Łukasz\source\Projekty\WeatherForCity\WeatherForCity.Tests\bin\Debug\netcoreapp2.2\WeatherForCity.Tests.dll
+C:\Users\Łukasz\source\Projekty\WeatherForCity\WeatherForCity.Tests\bin\Debug\netcoreapp2.2\WeatherForCity.Tests.pdb
+C:\Users\Łukasz\source\Projekty\WeatherForCity\WeatherForCity.Tests\obj\Debug\netcoreapp2.2\WeatherForCity.Tests.csprojAssemblyReference.cache
+C:\Users\Łukasz\source\Projekty\WeatherForCity\WeatherForCity.Tests\obj\Debug\netcoreapp2.2\WeatherForCity.Tests.csproj.CoreCompileInputs.cache
+C:\Users\Łukasz\source\Projekty\WeatherForCity\WeatherForCity.Tests\obj\Debug\netcoreapp2.2\WeatherForCity.Tests.AssemblyInfoInputs.cache
+C:\Users\Łukasz\source\Projekty\WeatherForCity\WeatherForCity.Tests\obj\Debug\netcoreapp2.2\WeatherForCity.Tests.AssemblyInfo.cs
+C:\Users\Łukasz\source\Projekty\WeatherForCity\WeatherForCity.Tests\obj\Debug\netcoreapp2.2\WeatherForCity.Tests.dll
+C:\Users\Łukasz\source\Projekty\WeatherForCity\WeatherForCity.Tests\obj\Debug\netcoreapp2.2\WeatherForCity.Tests.pdb
+C:\Users\Łukasz\source\Projekty\WeatherForCity\WeatherForCity.Tests\bin\Debug\netcoreapp2.2\WeatherForCity.Views.dll
+C:\Users\Łukasz\source\Projekty\WeatherForCity\WeatherForCity.Tests\bin\Debug\netcoreapp2.2\WeatherForCity.Views.pdb
+C:\Users\Łukasz\source\Projekty\WeatherForCity\WeatherForCity.Tests\bin\Debug\netcoreapp2.2\Microsoft.AspNetCore.Mvc.ViewFeatures.dll
+C:\Users\Łukasz\source\Projekty\WeatherForCity\WeatherForCity.Tests\bin\Debug\netcoreapp2.2\WeatherForCity.dll
+C:\Users\Łukasz\source\Projekty\WeatherForCity\WeatherForCity.Tests\bin\Debug\netcoreapp2.2\WeatherForCity.pdb
+C:\Users\Łukasz\source\Projekty\WeatherForCity\WeatherForCity.Tests\bin\Debug\netcoreapp2.2\Microsoft.AspNetCore.Mvc.ViewFeatures.xml
+C:\Users\Łukasz\source\Projekty\WeatherForCity\WeatherForCity.Tests\obj\Debug\netcoreapp2.2\WeatherForCity.Tests.csproj.CopyComplete
+C:\Users\Łukasz\source\Projekty\proby chart2\WeatherForCity\WeatherForCity.Tests\bin\Debug\netcoreapp2.2\NUnit3.TestAdapter.dll
+C:\Users\Łukasz\source\Projekty\proby chart2\WeatherForCity\WeatherForCity.Tests\bin\Debug\netcoreapp2.2\NUnit3.TestAdapter.pdb
+C:\Users\Łukasz\source\Projekty\proby chart2\WeatherForCity\WeatherForCity.Tests\bin\Debug\netcoreapp2.2\nunit.engine.netstandard.dll
+C:\Users\Łukasz\source\Projekty\proby chart2\WeatherForCity\WeatherForCity.Tests\bin\Debug\netcoreapp2.2\WeatherForCity.Views.dll
+C:\Users\Łukasz\source\Projekty\proby chart2\WeatherForCity\WeatherForCity.Tests\bin\Debug\netcoreapp2.2\WeatherForCity.Views.pdb
+C:\Users\Łukasz\source\Projekty\proby chart2\WeatherForCity\WeatherForCity.Tests\bin\Debug\netcoreapp2.2\WeatherForCity.Tests.deps.json
+C:\Users\Łukasz\source\Projekty\proby chart2\WeatherForCity\WeatherForCity.Tests\bin\Debug\netcoreapp2.2\WeatherForCity.Tests.runtimeconfig.json
+C:\Users\Łukasz\source\Projekty\proby chart2\WeatherForCity\WeatherForCity.Tests\bin\Debug\netcoreapp2.2\WeatherForCity.Tests.runtimeconfig.dev.json
+C:\Users\Łukasz\source\Projekty\proby chart2\WeatherForCity\WeatherForCity.Tests\bin\Debug\netcoreapp2.2\WeatherForCity.Tests.dll
+C:\Users\Łukasz\source\Projekty\proby chart2\WeatherForCity\WeatherForCity.Tests\bin\Debug\netcoreapp2.2\WeatherForCity.Tests.pdb
+C:\Users\Łukasz\source\Projekty\proby chart2\WeatherForCity\WeatherForCity.Tests\bin\Debug\netcoreapp2.2\WeatherForCity.dll
+C:\Users\Łukasz\source\Projekty\proby chart2\WeatherForCity\WeatherForCity.Tests\bin\Debug\netcoreapp2.2\WeatherForCity.pdb
+C:\Users\Łukasz\source\Projekty\proby chart2\WeatherForCity\WeatherForCity.Tests\obj\Debug\netcoreapp2.2\WeatherForCity.Tests.csprojAssemblyReference.cache
+C:\Users\Łukasz\source\Projekty\proby chart2\WeatherForCity\WeatherForCity.Tests\obj\Debug\netcoreapp2.2\WeatherForCity.Tests.csproj.CoreCompileInputs.cache
+C:\Users\Łukasz\source\Projekty\proby chart2\WeatherForCity\WeatherForCity.Tests\obj\Debug\netcoreapp2.2\WeatherForCity.Tests.AssemblyInfoInputs.cache
+C:\Users\Łukasz\source\Projekty\proby chart2\WeatherForCity\WeatherForCity.Tests\obj\Debug\netcoreapp2.2\WeatherForCity.Tests.AssemblyInfo.cs
+C:\Users\Łukasz\source\Projekty\proby chart2\WeatherForCity\WeatherForCity.Tests\obj\Debug\netcoreapp2.2\WeatherForCity.Tests.csproj.CopyComplete
+C:\Users\Łukasz\source\Projekty\proby chart2\WeatherForCity\WeatherForCity.Tests\obj\Debug\netcoreapp2.2\WeatherForCity.Tests.dll
+C:\Users\Łukasz\source\Projekty\proby chart2\WeatherForCity\WeatherForCity.Tests\obj\Debug\netcoreapp2.2\WeatherForCity.Tests.pdb

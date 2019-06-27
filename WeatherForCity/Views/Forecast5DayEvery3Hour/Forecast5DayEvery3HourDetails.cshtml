@@ -1,0 +1,125 @@
+﻿@model WeatherForCity.Models.ViewModels.Forecast5DayEvery3HourViewModel
+
+@{
+    ViewData["Title"] = "Forecast5DayEvery3HourDetails";
+}
+
+<h3 style="position:relative; margin-left: -10px;">
+    Pięciodniowa prognoza pogody dla miasta @Model.CityName XML
+</h3>
+
+</br>
+
+<div class="container">
+
+    @foreach (var distinctDate in Model.DistinctDates)
+    {
+        <table class="table col-md-8" style="margin-bottom: 0px;">
+
+            <tbody>
+
+                <tr>
+                    <td colspan="2" style="width: 100%" class="bg-light">
+
+                        @DateTime.Parse(distinctDate).ToLongDateString() &nbsp;
+                        @if (DateTime.Parse(distinctDate).ToLongDateString() == DateTime.Today.ToLongDateString())
+                        {
+                            <span>Dzisiaj</span>
+                        }
+
+                    </td>
+                </tr>
+
+                @foreach (var item in Model.Weather5DayEvery3HoursList)
+                {
+                    if (distinctDate == item.Date)
+                    {
+                        <tr>
+                            <td style="width: 40%; padding-left: 2vw; vertical-align: middle;">
+                                @item.Hour
+                                <img src="http://openweathermap.org/img/w/@item.IconName" />
+                            </td>
+                            <td style="width: 60%; vertical-align: middle; padding-bottom: 0px;">
+                                <p style="margin-bottom: 2px;">
+                                    <span style="display:inline-block; width: 70px;" class="rounded bg-secondary text-white text-center"> @item.Temperature <sup>o</sup>C </span> &nbsp; <span class="font-italic">@item.Description</span>
+                                </p>
+                                <p>
+                                    @item.Pressure hpa &nbsp; <span>zachmurzenie: @item.CloudsPrecent% </span> &nbsp;
+                                    @item.WindSpeed m/s
+                                </p>
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+    }
+</div>
+
+@section Scripts{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+   
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            var cityName = $('#inputCity').val();
+            $.ajax({
+                type: 'GET',
+                dataType: "json",
+                contentType: "application/json",
+                url: '/Forecast5DayEvery3Hour/DataForChart?cityName='+'@Model.CityName',
+                success: function (result) {
+                    google.charts.load('current', { packages: ['corechart', 'line'] });
+                    google.charts.setOnLoadCallback(function () {
+                        drawChart(result)
+                    });
+                    console.log(result)
+                }
+            });
+
+            function drawChart(result) {
+
+                var data = new google.visualization.DataTable();
+                data.addColumn('string', 'Time');
+                data.addColumn('number', 'Temperature');
+                var dataArray = [];
+                console.log(result);
+
+                $.each(result, function (i, obj) {
+                    dataArray.push([obj.time, obj.temperature]);
+                });
+
+                data.addRows(dataArray);
+                //data.addRows([
+
+                //]);
+
+                var options = {
+                    pointSize: 5,
+                    hAxis: {
+                        title: 'Czas'
+                    },
+                    vAxis: {
+                        title: 'Temperatura'
+                    },
+                };
+
+                var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+
+                chart.draw(data, options);
+            }
+
+
+        });
+
+    </script>
+
+
+}
+
+
+
+
+
+

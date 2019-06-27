@@ -1,0 +1,74 @@
+﻿@model WeatherForCity.Models.ViewModels.CityViewModel
+
+@{
+    ViewData["Title"] = "City";
+}
+
+<h4>Pogoda dla miasta @Model.CityName, @Model.Country  </h4> 
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3 mt-3">
+            <div class="font-weight-bold" style="font-size:x-large;">
+                <img src="http://openweathermap.org/img/w/@Model.Icon" /> @Model.Temperature <sup>o</sup>C
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2 font-weight-bolder mt-2">
+            @Model.Cloudy
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3 font-weight-bolder mt-1">
+            @DateTime.Now.ToLongDateString() r.
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-2 font-weight-normal mt-2">
+            @Html.DisplayNameFor(model => model.Pressure)
+        </div>
+        <div class="col-sm-2 mt-2">
+            @Model.Pressure hPa
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2 font-weight-normal mt-1">
+            @Html.DisplayNameFor(model => model.Humidity)
+        </div>
+        <div class="col-sm-2 font-weight-normal mt-1">
+            @Model.Humidity %
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2 font-weight-normal mt-1">
+            @Html.DisplayNameFor(model => model.WindSpeed)
+        </div>
+        <div class="col-sm-2 font-weight-normal mt-1">
+            @Model.WindSpeed m/s
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2 font-weight-normal mt-1">
+            @Html.DisplayNameFor(model => model.Sunrise)
+        </div>
+        <div class="col-sm-2 font-weight-normal mt-1">
+            @Model.Sunrise
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2 font-weight-normal mt-1">
+            @Html.DisplayNameFor(model => model.SunSet)
+        </div>
+        <div class="col-sm-2 font-weight-normal mt-1">
+            @Model.SunSet
+        </div>
+    </div>
+</div>
+
+   
+<div style="position: fixed; bottom: 100px; left: 100px;">
+    <a asp-action="CurentForecast">Wróć do wyszukiwania</a>
+</div>

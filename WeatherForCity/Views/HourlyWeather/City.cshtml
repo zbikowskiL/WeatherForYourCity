@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewData["Title"] = "City";
+}
+
+<h1>City</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="HourlyWeather" asp-action="City" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <input type="text" name="city" />
+            </div>
+            <hr />
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit">Pobierz dane</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <a asp-action="List">Back to List</a>
+</div>

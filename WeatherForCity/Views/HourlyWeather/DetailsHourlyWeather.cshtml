@@ -1,0 +1,44 @@
+﻿@model WeatherForCity.Models.ViewModels.HourlyWeatherViewModel
+
+@{
+    ViewData["Title"] = "DetailsHourlyWeather";
+}
+
+<h1>DetailsHourlyWeather</h1>
+
+<div class="row">
+    <div>
+        <h4>HourlyWeatherViewModel</h4>
+        <hr />
+
+        <img src="~/Image/Dragon-Ball-Super-625x352.jpg" />
+        <div name="container" class="container">
+            @foreach (var item in Model.HourlyForecast)
+            {
+                <div class="float-left text-center">
+                    <div>
+                        @item.Main.Temp
+                    </div>
+                    <div>
+                        <img src="http://openweathermap.org/img/w/10d.png" alt="Alternate Text" />
+                        <img src="" alt="Alternate Text" />
+                    </div>
+                    <div class="text-center">
+                        @item.Main.Pressure
+                    </div>
+                </div>
+
+            }
+        </div>
+
+        <hr />
+    </div>
+
+    <hr />
+    <br />
+
+    <div >
+        @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+        <a asp-action="Index">Back to List</a>
+    </div>
+</div>

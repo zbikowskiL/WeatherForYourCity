@@ -1,0 +1,368 @@
+﻿@model WeatherForCity.Models.ViewModels.Forecast5DayEvery3HourXMLViewModel
+@{
+    ViewData["Title"] = "Forecast5DayEvery3HourDetailsXML";
+}
+
+
+<div class="container sticky" style="z-index: 3; width: 100%; padding: 0px; background-color: white;">
+    <div class="row">
+        <h3 class="col col-md-12" style="padding-bottom: 5px;">
+            Pięciodniowa prognoza pogody dla miasta @Model.CityName
+        </h3>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-controller="Forecast5DayEvery3Hour" asp-action="Forecast5DayEvery3HourXML" method="post" enctype="multipart/form-data">
+                <div class="input-group mb-3" style="margin-bottom: 0;">
+                    <input type="text" class="form-control" id="cityName" name="cityName" placeholder="Wpisz nazwę miasta" aria-label="Recipient's username" aria-describedby="basic-addon2" required>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" id="button" type="submit">Pobierz pogodę</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-md-12">
+            <div class="chart" id="chart_div"></div>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 2px;">
+        <div class="col-md-12 text-center" style="visibility: hidden; background-color: white;" id="buttongroup">
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-success" id="showTempRain">Pogoda</button>
+                <button type="button" class="btn btn-warning" id="showTemp">Temperatura</button>
+                <button type="button" class="btn btn-primary" id="showRain">Deszcz</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </br>
+
+<div class="container">
+
+    @foreach (var distinctDate in Model.DistinctDates)
+    {
+        <table class="table col-md-8" style="margin-bottom: 0px;">
+
+            <tbody>
+
+                <tr>
+                    <td colspan="2" style="width: 100%" class="bg-light">
+
+                        @DateTime.Parse(distinctDate).ToLongDateString() &nbsp;
+                        @if (DateTime.Parse(distinctDate).ToLongDateString() == DateTime.Today.ToLongDateString())
+                        {
+                            <span>Dzisiaj</span>
+                        }
+
+                    </td>
+                </tr>
+
+                @foreach (var item in Model.Weather5DayEvery3HoursList)
+                {
+                    if (distinctDate == item.Date)
+                    {
+                        <tr>
+                            <td style="width: 40%; padding-left: 2vw; vertical-align: middle;">
+                                @item.Hour
+                                <img src="http://openweathermap.org/img/w/@item.IconName" />
+                            </td>
+                            <td style="width: 60%; vertical-align: middle; padding-bottom: 0px;">
+                                <p style="margin-bottom: 2px;">
+                                    <span style="display:inline-block; width: 70px;" class="rounded bg-secondary text-white text-center"> @item.Temperature <sup>o</sup>C </span> &nbsp; <span class="font-italic">@item.Description</span>
+                                </p>
+                                <p>
+                                    @item.Pressure hpa &nbsp; <span>zachmurzenie: @item.CloudsPrecent% </span> &nbsp;
+                                    @item.WindSpeed m/s
+                                </p>
+                                @if (item.WindDirection != "")
+                                {
+                                    <p>
+                                        <span>Kierunek wiatru`:</span> @item.WindDirection
+                                    </p>
+                                }
+
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+    }
+</div>
+
+@section Scripts{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        
+        $(document).ready(function () {
+            var cityName = $('#inputCity').val();
+
+            var buttonGroup = document.getElementById('buttongroup');
+            setTimeout(function () {
+                buttonGroup.style.visibility = "visible";
+            }, 1500);
+
+            var options = {
+                annotations: {
+                    alwaysOutside: true,
+                    textStyle: {
+                        fontSize: 14,
+                        color: '#000',
+                        auraColor: 'none'
+                    }
+                },
+                animation: {
+                    startup: true,
+                    duration: 1000,
+                    easing: 'linear',
+
+                },
+                legend: {
+                    position: 'none',
+                },
+                series: {
+                    0: {
+                        type: "area",
+                        targetAxisIndex: 0,
+                        color: "#FBD453"
+                    },
+                    1: {
+                        type: "bars",
+                        targetAxisIndex: 1,
+                        color: "#8FC2E3",
+                    }
+                },
+                hAxis: {
+                    title: 'Godzina'
+                },
+                vAxes: {
+                    0: {
+                        title: 'Temp. (Celsjusz)',
+                        viewWindowMode: 'explicit'
+                    },
+                    1: {
+                        title: 'Opady [mm]',
+                        viewWindowMode: 'explicit',
+                        viewWindow: {
+                            max: 10,
+                            min: 0
+                        }
+                    }
+                }
+            };
+            
+            $.ajax({
+                type: 'GET',
+                dataType: "json",
+                contentType: "application/json",
+                url: '/Forecast5DayEvery3Hour/DataForChartXML?cityName='+'@Model.CityName',
+                success: function (result) {
+                    google.charts.load('current', { packages: ['corechart', 'line', ] });
+                    google.charts.setOnLoadCallback(function () {
+                        drawChart(result, options)
+                    });
+                    console.log(result)
+                }
+
+            });
+
+
+
+            function drawChart(result, options) {
+
+                var data = new google.visualization.DataTable();
+                data.addColumn('string', 'Godzina');
+                data.addColumn('number', 'Temperatura (Celsjusz)');
+                data.addColumn({ type: 'string', role: 'annotation' });
+                data.addColumn('number', 'Opady [mm]');
+                data.addColumn({ type: 'string', role: 'annotation' });
+                var dataArray = [];
+                console.log(result);
+
+                $.each(result, function (i, obj) {
+                    dataArray.push([obj.time, obj.temperature, obj.temperatureDescryption, obj.precipitation, obj.precipitationDescryption]);
+                });
+
+                data.addRows(dataArray);
+               
+                var tempOptions = {
+                    annotations: {
+                        alwaysOutside: true,
+                        textStyle: {
+                            fontSize: 14,
+                            color: '#000',
+                            auraColor: 'none'
+                        }
+                    },
+                    animation: {
+                        startup: true,
+                        duration: 1000,
+                        easing: 'linear',
+
+                    },
+                    legend: {
+                        position: 'none',
+                    },
+                    series: {
+                        0: {
+                            type: "area",
+                            targetAxisIndex: 0,
+                            color: "#FBD453"
+                        },
+                        1: {
+                            type: "bars",
+                            targetAxisIndex: 1,
+                            color: "#8FC2E3",
+                        }
+                    },
+                    hAxis: {
+                        title: 'Godzina'
+                    },
+                    vAxes: {
+                        0: {
+                            title: 'Temp. (Celsjusz)',
+                            viewWindowMode: 'explicit'
+                        }, 
+                        1: {
+                            title: 'Opady [mm]',
+                            viewWindowMode: 'explicit',
+                            viewWindow: {
+                                max: 10,
+                                min: 0
+                            }
+                        }
+                    }
+                };
+
+                var rainOptions = {
+                    annotations: {
+                        alwaysOutside: true,
+                        textStyle: {
+                            fontSize: 14,
+                            color: '#000',
+                            auraColor: 'none'
+                        }
+                    },
+                    animation: {
+                        startup: true,
+                        duration: 1000,
+                        easing: 'linear',
+
+                    },
+                    legend: {
+                        position: 'none',
+                    },
+                    series: {
+                        0: {
+                            type: "bars",
+                            targetAxisIndex: 0,
+                            color: "#8FC2E3"
+                        },
+                    },
+                    hAxis: {
+                        title: 'Godzina'
+                    },
+                    vAxes: {
+                        0: {
+                            title: 'Opady [mm]',
+                            viewWindowMode: 'explicit',
+                            viewWindow: {
+                                max: 10,
+                                min: 0
+                            }
+                        },
+                        1: {
+                            title: 'Opady [mm]',
+                            viewWindowMode: 'explicit',
+                            viewWindow: {
+                                max: 10,
+                                min: 0
+                            }
+                        }
+                    }
+                };
+
+
+                function drawTemp() {
+                    document.getElementById("showTempRain").disabled = false;
+                    document.getElementById("showTemp").disabled = true;
+                    document.getElementById("showRain").disabled = false;
+                    view = new google.visualization.DataView(data);
+                    view.hideColumns([3]);
+                    view.hideColumns([4]);
+                    chart.draw(view, tempOptions);
+                }
+
+                function drawRain() {
+                    document.getElementById("showTempRain").disabled = false;
+                    document.getElementById("showTemp").disabled = false;
+                    document.getElementById("showRain").disabled = true;
+                    view = new google.visualization.DataView(data);
+                    view.hideColumns([1]);
+                    view.hideColumns([2]);
+                    chart.draw(view, rainOptions);
+                }
+
+
+                function drawTempAndRain() {
+                    document.getElementById("showTempRain").disabled = true;
+                    document.getElementById("showTemp").disabled = false;
+                    document.getElementById("showRain").disabled = false;
+                    view = new google.visualization.DataView(data);
+                    view.hideColumns([4]);
+                    chart.draw(view, options);
+                }
+
+                var showTemp = document.getElementById("showTemp");
+                showTemp.onclick = function () {
+                    drawTemp();
+                }
+
+                var showRain = document.getElementById("showRain");
+                showRain.onclick = function () {
+                    drawRain();
+                }
+
+                var showTempRain = document.getElementById("showTempRain");
+                showTempRain.onclick = function () {
+                    drawTempAndRain();
+                }
+
+                var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+
+                chart.draw(data, options);
+
+                $(window).resize(function () {
+                    drawTemp();
+                });
+
+                //$(window).scroll(function () {
+                //    var sticky = $('.sticky'),
+                //        scroll = $(window).scrollTop();
+
+                //    if (scroll >= 550) sticky.addClass('fixed');
+                //    else sticky.removeClass('fixed');
+                //});
+            }
+
+
+         });
+
+
+    </script>
+
+
+}
+
+
+
+
+
+
+
+

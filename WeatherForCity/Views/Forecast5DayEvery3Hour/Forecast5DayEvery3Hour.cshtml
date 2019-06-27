@@ -1,0 +1,41 @@
+﻿@model WeatherForCity.Models.ViewModels.Forecast5DayEvery3HourViewModel
+
+@{
+    ViewData["Title"] = "Forecast5DayEvery3Hour";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8">
+            <h2 class="title">Pięciodniowa prognoza pogody dla Twojego miasta</h2>
+        </div>
+        <div class="col-sm-4">
+            <div class="sun">
+                <img src="~/Image/sun.png" />
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-controller="Forecast5DayEvery3Hour" asp-action="Forecast5DayEvery3Hour" method="post" enctype="multipart/form-data">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" id="cityName" name="cityName" placeholder="Wpisz nazwę miasta" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" id="button" type="submit">Pobierz pogodę</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+@section Scripts{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+  
+
+
+}
